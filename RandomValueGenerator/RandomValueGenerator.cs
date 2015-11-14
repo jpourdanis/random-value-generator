@@ -413,6 +413,11 @@ namespace RandomValueGenerator
             return (byte)(Convert.ToByte(GetElement(digits)) - Convert.ToByte(digits.First()));
         }
 
+        public byte GetDifferentNumber(int number)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// <see cref="IRandomValueGenerator.Get(int, int)"/>
         /// </summary>
