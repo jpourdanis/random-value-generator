@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+  <object id="RandomValueGenerator" type="RandomValueGenerator.RandomValueGenerator, RandomValueGenerator">
+    <!-- Utilities -->
+    <property name="DictionaryDao" ref="DictionaryDao" />
+  </object>
+
+  <object id="DictionaryDao" factory-object="MockRepository" factory-method="StrictMock">
+    <constructor-arg type="System.Type" value="RandomValueGenerator.Utilities.IDictionaryDao, RandomValueGenerator"/>
+    <constructor-arg type="object[]">
+      <list />
+    </constructor-arg>
+  </object>
+</objects>
