@@ -349,6 +349,13 @@ namespace RandomValueGenerator
         /// <returns>The digit.</returns>
         byte GetDigit();
 
+        /// <summary>
+        /// Returns a different number of <see cref="number"/>.
+        /// </summary>
+        /// <param name="number">A number.</param>
+        /// <returns>The different number.</returns>
+        byte GetDifferentNumber(int number);
+
         #endregion
     }
 }
