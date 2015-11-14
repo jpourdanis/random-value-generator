@@ -792,7 +792,7 @@ namespace RandomValueGenerator_nu
 
             int minValue = Random.Next(maxValue);
 
-            Assert.Throws<ArgumentException>(() => RandomValueGenerator.GetDecimal(minValue, maxValue,-Random.Next(10)));
+            Assert.Throws<ArgumentException>(() => RandomValueGenerator.GetDecimal(minValue, maxValue,-Random.Next(1, 10)));
         }
 
         #endregion
