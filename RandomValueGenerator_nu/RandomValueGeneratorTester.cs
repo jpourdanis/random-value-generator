@@ -799,6 +799,24 @@ namespace RandomValueGenerator_nu
 
         #endregion
 
+        #region GetDifferentNumber
+
+        #region Success
+
+        [Test]
+        public void TestGetDifferentNumber()
+        {
+            int randomNumber = Random.Next(1, byte.MaxValue);
+
+            byte result = RandomValueGenerator.GetDifferentNumber(randomNumber);
+
+            Assert.AreNotEqual(result,randomNumber);
+        }
+
+        #endregion
+
+        #endregion
+
         #endregion
 
         #region Public Properties

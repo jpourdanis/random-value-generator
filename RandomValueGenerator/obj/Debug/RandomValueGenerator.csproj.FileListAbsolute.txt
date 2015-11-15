@@ -6,3 +6,5 @@ C:\Users\J0keR\Desktop\TestingApplication2\RandomValueGenerator\RandomValueGener
 C:\Users\J0keR\Source\Repos\random-value-generator\RandomValueGenerator\obj\Debug\RandomValueGenerator.csprojResolveAssemblyReference.cache
 C:\Users\J0keR\Source\Repos\random-value-generator\RandomValueGenerator\obj\Debug\RandomValueGenerator.dll
 C:\Users\J0keR\Source\Repos\random-value-generator\RandomValueGenerator\obj\Debug\RandomValueGenerator.pdb
+C:\Users\J0keR\Source\Repos\random-value-generator\RandomValueGenerator\bin\Debug\RandomValueGenerator.dll
+C:\Users\J0keR\Source\Repos\random-value-generator\RandomValueGenerator\bin\Debug\RandomValueGenerator.pdb

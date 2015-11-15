@@ -413,9 +413,22 @@ namespace RandomValueGenerator
             return (byte)(Convert.ToByte(GetElement(digits)) - Convert.ToByte(digits.First()));
         }
 
+        /// <summary>
+        /// <see cref="IRandomValueGenerator.GetDifferentNumber"/>
+        /// </summary>
+        /// <param name="number">..</param>
+        /// <returns>..</returns>
         public byte GetDifferentNumber(int number)
         {
-            throw new NotImplementedException();
+            byte randomNumber;
+
+            do
+            {             
+                randomNumber = (byte) Random.Next();
+            }
+            while (randomNumber == number);
+
+            return randomNumber;
         }
 
         /// <summary>
