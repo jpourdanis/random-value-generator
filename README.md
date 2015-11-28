@@ -2,6 +2,8 @@
 
 Random-value-generator is a C# class library for creating random values of many types.
 
+Read interface for more info.
+
 # code example
 
 string result = RandomValueGenerator.Get(alphabet, stringLength);
