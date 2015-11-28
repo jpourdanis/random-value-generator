@@ -210,13 +210,12 @@ namespace RandomValueGenerator
         /// </summary>
         /// <param name="minValue">The minimum value.</param>
         /// <param name="maxValue">The maximum value.</param>
-        /// <param name="numberOfDecimals">The number of decimals digits.</param>
+        /// <param name="numberOfDecimals">The number of decimals digits after comma.</param>
         /// <returns>The decimal.</returns>
         /// <list type="Exceptions">
         /// <exception cref="ArgumentException">Throws when <see cref="maxValue"/> is bigger than <see cref="minValue"/>.</exception>
-        /// <exception cref="ArgumentException">Throws when <see cref="numberOfDecimals"/> is negative.</exception>
         /// </list>
-        decimal GetDecimal(int minValue, int maxValue, int numberOfDecimals);
+        decimal GetDecimal(int minValue, int maxValue, byte numberOfDecimals);
 
         #endregion
 

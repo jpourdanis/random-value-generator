@@ -207,19 +207,14 @@ namespace RandomValueGenerator
         }
 
         /// <summary>
-        /// <see cref="IRandomValueGenerator.GetDecimal(int,int,int)"/>
+        /// <see cref="IRandomValueGenerator.GetDecimal(int,int,byte)"/>
         /// </summary>
         /// <param name="minValue">..</param>
         /// <param name="maxValue">..</param>
         /// <param name="numberOfDecimals">..</param>
         /// <returns>..</returns>
-        public decimal GetDecimal(int minValue, int maxValue, int numberOfDecimals)
+        public decimal GetDecimal(int minValue, int maxValue, byte numberOfDecimals)
         {
-            if (numberOfDecimals < 0)
-            {
-                throw new ArgumentException("Number of decimals cannot be negative!");
-            }
-
             if (maxValue < minValue)
             {
                 throw new ArgumentException("Maximum value is less than minimum value!");
@@ -227,7 +222,7 @@ namespace RandomValueGenerator
 
             string numberBeforeComa = Get(minValue, maxValue).ToString();
 
-            string numberAfterComa = Get((int)(Math.Pow(10, numberOfDecimals - 1)), (int)(Math.Pow(10, numberOfDecimals) - 1)).ToString();
+            string numberAfterComa =  Math.Floor(Random.NextDouble() * Math.Pow(10, Random.Next (numberOfDecimals + 1))).ToString(new string ('0', numberOfDecimals));
 
             return decimal.Parse(numberBeforeComa + "," + numberAfterComa);
         }

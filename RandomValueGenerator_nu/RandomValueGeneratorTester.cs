@@ -762,13 +762,15 @@ namespace RandomValueGenerator_nu
 
             int minValue = Random.Next(maxValue);
 
-            int numberOfDecimals = Random.Next(10);
+            byte numberOfDecimals = (byte)Random.Next(1, 20);
 
             decimal result = RandomValueGenerator.GetDecimal(minValue, maxValue, numberOfDecimals);
 
             Assert.LessOrEqual(result, maxValue);
 
             Assert.GreaterOrEqual(result, minValue);
+
+            Assert.AreEqual(numberOfDecimals, result.ToString().Split(',')[1].Length);
         }
 
         #endregion
@@ -782,17 +784,7 @@ namespace RandomValueGenerator_nu
 
             int minValue = maxValue + 1;
 
-            Assert.Throws<ArgumentException>(() => RandomValueGenerator.GetDecimal(minValue,maxValue, Random.Next(10)));
-        }
-
-        [Test]
-        public void TestGetDecimalArgumentExceptionForNegativeNumberOfDecimals()
-        {
-            int maxValue = Random.Next(100);
-
-            int minValue = Random.Next(maxValue);
-
-            Assert.Throws<ArgumentException>(() => RandomValueGenerator.GetDecimal(minValue, maxValue,-Random.Next(1, 10)));
+            Assert.Throws<ArgumentException>(() => RandomValueGenerator.GetDecimal(minValue,maxValue,(byte) Random.Next(1,20)));
         }
 
         #endregion
