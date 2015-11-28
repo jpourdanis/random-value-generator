@@ -1,6 +1,6 @@
 # random-value-generator
 
-Random-value-generator is a C# class libary for creating random values of many types.
+Random-value-generator is a C# class library for creating random values of many types.
 
 # code example
 
