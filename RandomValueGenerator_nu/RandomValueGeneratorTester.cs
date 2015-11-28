@@ -798,7 +798,7 @@ namespace RandomValueGenerator_nu
         [Test]
         public void TestGetDifferentNumber()
         {
-            int randomNumber = Random.Next(1, byte.MaxValue);
+            byte randomNumber = (byte) Random.Next(1, byte.MaxValue);
 
             byte result = RandomValueGenerator.GetDifferentNumber(randomNumber);
 

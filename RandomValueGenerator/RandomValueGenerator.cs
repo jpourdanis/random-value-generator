@@ -44,11 +44,13 @@ namespace RandomValueGenerator
 
         #region IRandomValueGenerator Implementation
 
+        #region Void
+
         /// <summary>
         /// <see cref="IRandomValueGenerator.SetDictionaryDao"/>
         /// </summary>
         /// <param name="dictionaryDao">..</param>
-        public void SetDictionaryDao (IDictionaryDao dictionaryDao)
+        public void SetDictionaryDao(IDictionaryDao dictionaryDao)
         {
             if (dictionaryDao == null)
             {
@@ -57,6 +59,10 @@ namespace RandomValueGenerator
 
             DictionaryDao = dictionaryDao;
         }
+
+        #endregion
+
+        #region String
 
         /// <summary>
         /// <see cref="IRandomValueGenerator.GetDefaultAlphabet"/>
@@ -200,52 +206,10 @@ namespace RandomValueGenerator
 
             for (int i = 0; i < numberOfWords; i++)
             {
-                words.Add (GetWord (caseSensitivityMode));
+                words.Add(GetWord(caseSensitivityMode));
             }
 
             return words;
-        }
-
-        /// <summary>
-        /// <see cref="IRandomValueGenerator.GetDecimal(int,int,byte)"/>
-        /// </summary>
-        /// <param name="minValue">..</param>
-        /// <param name="maxValue">..</param>
-        /// <param name="numberOfDecimals">..</param>
-        /// <returns>..</returns>
-        public decimal GetDecimal(int minValue, int maxValue, byte numberOfDecimals)
-        {
-            if (maxValue < minValue)
-            {
-                throw new ArgumentException("Maximum value is less than minimum value!");
-            }
-
-            string numberBeforeComa = Get(minValue, maxValue).ToString();
-
-            string numberAfterComa =  Math.Floor(Random.NextDouble() * Math.Pow(10, Random.Next (numberOfDecimals + 1))).ToString(new string ('0', numberOfDecimals));
-
-            return decimal.Parse(numberBeforeComa + "," + numberAfterComa);
-        }
-
-        /// <summary>
-        /// <see cref="IRandomValueGenerator.GetGuid"/>
-        /// </summary>
-        /// <returns>..</returns>
-        public Guid GetGuid()
-        {
-            Guid randomGuid;
-
-            do
-            {
-                byte[] bytes = new byte[16];
-
-                Random.NextBytes(bytes);
-
-                randomGuid = new Guid(bytes);
-            }
-            while (randomGuid == Guid.Empty);
-
-            return randomGuid;
         }
 
         /// <summary>
@@ -254,7 +218,7 @@ namespace RandomValueGenerator
         /// <returns>..</returns>
         public string GetNullOrEmptyOrWhiteSpace()
         {
-            return GetElement (new List<string> { null, string.Empty, "\r \n \t" });
+            return GetElement(new List<string> { null, string.Empty, "\r \n \t" });
         }
 
         /// <summary>
@@ -300,176 +264,6 @@ namespace RandomValueGenerator
             }
 
             return GetSentence(numberOfWords, separator, CaseSensitivityMode.Default);
-        }
-
-        /// <summary>
-        /// <see cref="IRandomValueGenerator.GetBoolean"/>
-        /// </summary>
-        /// <returns>..</returns>
-        public bool GetBoolean()
-        {
-            return Random.NextDouble() < 0.5;
-        }
-
-        /// <summary>
-        /// <see cref="IRandomValueGenerator.GetPastUtcDateTime"/>
-        /// </summary>
-        /// <returns>..</returns>
-        public DateTime GetPastUtcDateTime()
-        {
-            return DateTime.UtcNow.AddDays(- Get (1, 100));
-        }
-
-        /// <summary>
-        /// <see cref="IRandomValueGenerator.GetFutureUtcDateTime"/>
-        /// </summary>
-        /// <returns>..</returns>
-        public DateTime GetFutureUtcDateTime()
-        {
-            return DateTime.UtcNow.AddDays(Get (1, 100));
-        }
-
-        /// <summary>
-        /// <see cref="IRandomValueGenerator.GetPastUtcDateTimeOffset"/>
-        /// </summary>
-        /// <returns>..</returns>
-        public DateTimeOffset GetPastUtcDateTimeOffset()
-        {
-            return DateTimeOffset.UtcNow.AddDays(- Get(1, 100));
-        }
-
-        /// <summary>
-        /// <see cref="IRandomValueGenerator.GetFutureUtcDateTimeOffset"/>
-        /// </summary>
-        /// <returns>..</returns>
-        public DateTimeOffset GetFutureUtcDateTimeOffset()
-        {
-            return DateTimeOffset.UtcNow.AddDays(Get(1, 100));
-        }
-
-        /// <summary>
-        /// <see cref="IRandomValueGenerator.GetElement{T}"/>
-        /// </summary>
-        /// <typeparam name="T">..</typeparam>
-        /// <param name="elements">..</param>
-        /// <returns>..</returns>
-        public T GetElement<T>(IList<T> elements)
-        {
-            if (elements == null)
-            {
-                throw new ArgumentNullException("elements");
-            }
-
-            if (!elements.Any())
-            {
-                throw new ArgumentException("The elements collection is empty.");
-            }
-
-            return Shuffle(elements).First();
-        }
-
-        /// <summary>
-        /// <see cref="IRandomValueGenerator.GetLetter(string)"/>
-        /// </summary>
-        /// <param name="alphabet">..</param>
-        /// <returns>..</returns>
-        public char GetLetter(string alphabet)
-        {
-            if (string.IsNullOrWhiteSpace(alphabet))
-            {
-                throw new ArgumentException("The alphabet cannot be null, empty or whitespace!");
-            }
-
-            if (alphabet.Any(o => !char.IsLetter(o)))
-            {
-                throw new ArgumentException("The alphabet contains non letter characters!");
-            }
-
-            return GetElement(alphabet.ToCharArray());
-        }
-
-        /// <summary>
-        /// <see cref="IRandomValueGenerator.GetLetter()"/>
-        /// </summary>
-        /// <returns>..</returns>
-        public char GetLetter()
-        {
-            return GetLetter(Letters);
-        }
-
-        /// <summary>
-        /// <see cref="IRandomValueGenerator.GetDigit"/>
-        /// </summary>
-        /// <returns>..</returns>
-        public byte GetDigit()
-        {
-            char [] digits = Digits.ToCharArray();
-
-            return (byte)(Convert.ToByte(GetElement(digits)) - Convert.ToByte(digits.First()));
-        }
-
-        /// <summary>
-        /// <see cref="IRandomValueGenerator.GetDifferentNumber"/>
-        /// </summary>
-        /// <param name="number">..</param>
-        /// <returns>..</returns>
-        public byte GetDifferentNumber(int number)
-        {
-            byte randomNumber;
-
-            do
-            {             
-                randomNumber = (byte) Random.Next();
-            }
-            while (randomNumber == number);
-
-            return randomNumber;
-        }
-
-        /// <summary>
-        /// <see cref="IRandomValueGenerator.Get(int, int)"/>
-        /// </summary>
-        /// <param name="minValue">..</param>
-        /// <param name="maxValue">..</param>
-        /// <returns>..</returns>
-        public int Get(int minValue, int maxValue)
-        {
-            if (maxValue < minValue)
-            {
-                throw new ArgumentException("Maximum value is less than minimum value!");
-            }
-
-            return Random.Next(minValue, maxValue);
-        }
-
-        /// <summary>
-        /// <see cref="IRandomValueGenerator.GetPositive(int)"/>
-        /// </summary>
-        /// <param name="maxValue">..</param>
-        /// <returns>..</returns>
-        public int GetPositive(int maxValue)
-        {
-            if (maxValue < 0)
-            {
-                throw new ArgumentException("Maximum value cannot be negative!");
-            }
-
-            return Random.Next(maxValue);
-        }
-
-        /// <summary>
-        /// <see cref="IRandomValueGenerator.GetNegative(int)"/>
-        /// </summary>
-        /// <param name="maxValue">..</param>
-        /// <returns>..</returns>
-        public int GetNegative(int maxValue)
-        {
-            if (maxValue >= 0)
-            {
-                throw new ArgumentException("Maximum value should be less than zero!");
-            }
-
-            return -Random.Next(1, Math.Abs(maxValue));
         }
 
         /// <summary>
@@ -536,6 +330,110 @@ namespace RandomValueGenerator
 
             return Enumerable.Range(0, randomSize).Aggregate(new StringBuilder(), (current, next) => current.Append(alphabet[Random.Next(alphabet.Length)])).ToString();
         }
+
+        #endregion
+
+        #region Integer
+
+        /// <summary>
+        /// <see cref="IRandomValueGenerator.Get(int, int)"/>
+        /// </summary>
+        /// <param name="minValue">..</param>
+        /// <param name="maxValue">..</param>
+        /// <returns>..</returns>
+        public int Get(int minValue, int maxValue)
+        {
+            if (maxValue < minValue)
+            {
+                throw new ArgumentException("Maximum value is less than minimum value!");
+            }
+
+            return Random.Next(minValue, maxValue);
+        }
+
+        /// <summary>
+        /// <see cref="IRandomValueGenerator.GetPositive(int)"/>
+        /// </summary>
+        /// <param name="maxValue">..</param>
+        /// <returns>..</returns>
+        public int GetPositive(int maxValue)
+        {
+            if (maxValue < 0)
+            {
+                throw new ArgumentException("Maximum value cannot be negative!");
+            }
+
+            return Random.Next(maxValue);
+        }
+
+        /// <summary>
+        /// <see cref="IRandomValueGenerator.GetNegative(int)"/>
+        /// </summary>
+        /// <param name="maxValue">..</param>
+        /// <returns>..</returns>
+        public int GetNegative(int maxValue)
+        {
+            if (maxValue >= 0)
+            {
+                throw new ArgumentException("Maximum value should be less than zero!");
+            }
+
+            return -Random.Next(1, Math.Abs(maxValue));
+        }
+        
+        #endregion
+
+        #region Decimal
+
+        /// <summary>
+        /// <see cref="IRandomValueGenerator.GetDecimal(int,int,byte)"/>
+        /// </summary>
+        /// <param name="minValue">..</param>
+        /// <param name="maxValue">..</param>
+        /// <param name="numberOfDecimals">..</param>
+        /// <returns>..</returns>
+        public decimal GetDecimal(int minValue, int maxValue, byte numberOfDecimals)
+        {
+            if (maxValue < minValue)
+            {
+                throw new ArgumentException("Maximum value is less than minimum value!");
+            }
+
+            string numberBeforeComa = Get(minValue, maxValue).ToString();
+
+            string numberAfterComa = Math.Floor(Random.NextDouble() * Math.Pow(10, Random.Next(numberOfDecimals + 1))).ToString(new string('0', numberOfDecimals));
+
+            return decimal.Parse(numberBeforeComa + "," + numberAfterComa);
+        }
+        
+        #endregion
+
+        #region Guid
+
+        /// <summary>
+        /// <see cref="IRandomValueGenerator.GetGuid"/>
+        /// </summary>
+        /// <returns>..</returns>
+        public Guid GetGuid()
+        {
+            Guid randomGuid;
+
+            do
+            {
+                byte[] bytes = new byte[16];
+
+                Random.NextBytes(bytes);
+
+                randomGuid = new Guid(bytes);
+            }
+            while (randomGuid == Guid.Empty);
+
+            return randomGuid;
+        }
+
+        #endregion
+
+        #region FileInfo
 
         /// <summary>
         /// <see cref="IRandomValueGenerator.GetTextFile(int, string)"/>
@@ -609,6 +507,156 @@ namespace RandomValueGenerator
 
             return fileInfo;
         }
+        
+        #endregion
+
+        #region Boolean
+
+        /// <summary>
+        /// <see cref="IRandomValueGenerator.GetBoolean"/>
+        /// </summary>
+        /// <returns>..</returns>
+        public bool GetBoolean()
+        {
+            return Random.NextDouble() < 0.5;
+        }
+        
+        #endregion
+
+        #region DateTime
+
+        /// <summary>
+        /// <see cref="IRandomValueGenerator.GetPastUtcDateTime"/>
+        /// </summary>
+        /// <returns>..</returns>
+        public DateTime GetPastUtcDateTime()
+        {
+            return DateTime.UtcNow.AddDays(-Get(1, 100));
+        }
+
+        /// <summary>
+        /// <see cref="IRandomValueGenerator.GetFutureUtcDateTime"/>
+        /// </summary>
+        /// <returns>..</returns>
+        public DateTime GetFutureUtcDateTime()
+        {
+            return DateTime.UtcNow.AddDays(Get(1, 100));
+        }
+        
+        #endregion
+
+        #region DateTimeOffset
+
+        /// <summary>
+        /// <see cref="IRandomValueGenerator.GetPastUtcDateTimeOffset"/>
+        /// </summary>
+        /// <returns>..</returns>
+        public DateTimeOffset GetPastUtcDateTimeOffset()
+        {
+            return DateTimeOffset.UtcNow.AddDays(-Get(1, 100));
+        }
+
+        /// <summary>
+        /// <see cref="IRandomValueGenerator.GetFutureUtcDateTimeOffset"/>
+        /// </summary>
+        /// <returns>..</returns>
+        public DateTimeOffset GetFutureUtcDateTimeOffset()
+        {
+            return DateTimeOffset.UtcNow.AddDays(Get(1, 100));
+        }
+
+        #endregion
+
+        #region Generic
+
+        /// <summary>
+        /// <see cref="IRandomValueGenerator.GetElement{T}"/>
+        /// </summary>
+        /// <typeparam name="T">..</typeparam>
+        /// <param name="elements">..</param>
+        /// <returns>..</returns>
+        public T GetElement<T>(IList<T> elements)
+        {
+            if (elements == null)
+            {
+                throw new ArgumentNullException("elements");
+            }
+
+            if (!elements.Any())
+            {
+                throw new ArgumentException("The elements collection is empty.");
+            }
+
+            return Shuffle(elements).First();
+        }
+        
+        #endregion
+
+        #region Char
+
+        /// <summary>
+        /// <see cref="IRandomValueGenerator.GetLetter(string)"/>
+        /// </summary>
+        /// <param name="alphabet">..</param>
+        /// <returns>..</returns>
+        public char GetLetter(string alphabet)
+        {
+            if (string.IsNullOrWhiteSpace(alphabet))
+            {
+                throw new ArgumentException("The alphabet cannot be null, empty or whitespace!");
+            }
+
+            if (alphabet.Any(o => !char.IsLetter(o)))
+            {
+                throw new ArgumentException("The alphabet contains non letter characters!");
+            }
+
+            return GetElement(alphabet.ToCharArray());
+        }
+
+        /// <summary>
+        /// <see cref="IRandomValueGenerator.GetLetter()"/>
+        /// </summary>
+        /// <returns>..</returns>
+        public char GetLetter()
+        {
+            return GetLetter(Letters);
+        }
+
+        #endregion
+
+        #region Byte
+
+        /// <summary>
+        /// <see cref="IRandomValueGenerator.GetDigit"/>
+        /// </summary>
+        /// <returns>..</returns>
+        public byte GetDigit()
+        {
+            char[] digits = Digits.ToCharArray();
+
+            return (byte)(Convert.ToByte(GetElement(digits)) - Convert.ToByte(digits.First()));
+        }
+
+        /// <summary>
+        /// <see cref="IRandomValueGenerator.GetDifferentNumber"/>
+        /// </summary>
+        /// <param name="number">..</param>
+        /// <returns>..</returns>
+        public byte GetDifferentNumber(byte number)
+        {
+            byte randomNumber;
+
+            do
+            {
+                randomNumber = (byte)Random.Next();
+            }
+            while (randomNumber == number);
+
+            return randomNumber;
+        }
+        
+        #endregion
 
         #endregion
 

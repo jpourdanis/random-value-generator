@@ -353,7 +353,7 @@ namespace RandomValueGenerator
         /// </summary>
         /// <param name="number">A number.</param>
         /// <returns>The different number.</returns>
-        byte GetDifferentNumber(int number);
+        byte GetDifferentNumber(byte number);
 
         #endregion
     }
