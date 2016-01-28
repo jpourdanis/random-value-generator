@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("RandomValueGenerator_nu")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("RandomValueGenerator_nu")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("RandomValueGenerator_nu")]
 [assembly: AssemblyProduct("RandomValueGenerator_nu")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCopyright("Copyright © RandomValueGenerator_nu 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
