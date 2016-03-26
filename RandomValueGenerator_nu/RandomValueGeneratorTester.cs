@@ -107,7 +107,7 @@ namespace RandomValueGenerator_nu
 
             int result = RandomValueGenerator.Get(minValue, maxValue);
 
-            Assert.Less(result, maxValue);
+            Assert.LessOrEqual(result, maxValue);
 
             Assert.GreaterOrEqual(result, minValue);
         }
@@ -145,7 +145,7 @@ namespace RandomValueGenerator_nu
 
             Assert.AreEqual(result.Length, stringLength);
 
-            Assert.IsTrue(result.Any(o => alphabet.Contains(o)));
+            Assert.IsTrue(result.All(o => alphabet.Contains(o)));
         }
 
         #endregion
