@@ -280,10 +280,24 @@ namespace RandomValueGenerator
         DateTime GetPastUtcDateTime();
 
         /// <summary>
+        /// Returns a random past UTC date time from giving datetime.
+        /// </summary>
+        /// <param name="dateTime">The datetime.</param>
+        /// <returns>The past DateTime.</returns>
+        DateTime GetPastUtcDateTime(DateTime dateTime);
+
+        /// <summary>
         /// Returns a random future UTC date time.
         /// </summary>
         /// <returns>The DateTime.</returns>
         DateTime GetFutureUtcDateTime();
+
+        /// <summary>
+        /// Returns a random future UTC date time from giving datetime.
+        /// </summary>
+        /// <param name="dateTime">The datetime.</param>
+        /// <returns>The future DateTime.</returns>
+        DateTime GetFutureUtcDateTime(DateTime dateTime);
 
         #endregion
 

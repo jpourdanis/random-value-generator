@@ -317,6 +317,12 @@ namespace RandomValueGenerator_nu
             Assert.That(DateTime.UtcNow, Is.GreaterThan(RandomValueGenerator.GetPastUtcDateTime()));
         }
 
+        [Test]
+        public void TestGetPastUtcDateTimeFromGiven()
+        {
+            Assert.That(DateTime.UtcNow, Is.GreaterThan(RandomValueGenerator.GetPastUtcDateTime(DateTime.UtcNow)));
+        }
+
         #endregion
 
         #endregion
@@ -329,6 +335,12 @@ namespace RandomValueGenerator_nu
         public void TestGetFutureUtcDateTime()
         {
             Assert.That(DateTime.UtcNow, Is.LessThan(RandomValueGenerator.GetFutureUtcDateTime()));
+        }
+
+        [Test]
+        public void TestGetFutureUtcDateTimeFromGiven()
+        {
+            Assert.That(DateTime.UtcNow, Is.LessThan(RandomValueGenerator.GetFutureUtcDateTime(DateTime.UtcNow)));
         }
 
         #endregion

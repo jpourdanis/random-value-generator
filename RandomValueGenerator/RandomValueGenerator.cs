@@ -526,7 +526,7 @@ namespace RandomValueGenerator
         #region DateTime
 
         /// <summary>
-        /// <see cref="IRandomValueGenerator.GetPastUtcDateTime"/>
+        /// <see cref="IRandomValueGenerator.GetPastUtcDateTime()"/>
         /// </summary>
         /// <returns>..</returns>
         public DateTime GetPastUtcDateTime()
@@ -535,14 +535,34 @@ namespace RandomValueGenerator
         }
 
         /// <summary>
-        /// <see cref="IRandomValueGenerator.GetFutureUtcDateTime"/>
+        /// <see cref="IRandomValueGenerator.GetPastUtcDateTime(DateTime)"/>
+        /// </summary>
+        /// <param name="dateTime">..</param>
+        /// <returns>..</returns>
+        public DateTime GetPastUtcDateTime(DateTime dateTime)
+        {
+            return dateTime.AddDays(-Get(1, 100));
+        }
+
+        /// <summary>
+        /// <see cref="IRandomValueGenerator.GetFutureUtcDateTime()"/>
         /// </summary>
         /// <returns>..</returns>
         public DateTime GetFutureUtcDateTime()
         {
             return DateTime.UtcNow.AddDays(Get(1, 100));
         }
-        
+
+        /// <summary>
+        /// <see cref="IRandomValueGenerator.GetFutureUtcDateTime(DateTime)"/>
+        /// </summary>
+        /// <param name="dateTime">..</param>
+        /// <returns>..</returns>
+        public DateTime GetFutureUtcDateTime(DateTime dateTime)
+        {
+            return dateTime.AddDays(Get(1, 100));
+        }
+
         #endregion
 
         #region DateTimeOffset
