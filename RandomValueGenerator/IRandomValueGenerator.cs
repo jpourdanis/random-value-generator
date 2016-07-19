@@ -155,6 +155,12 @@ namespace RandomValueGenerator
         string GetDefaultSeparator();
 
         /// <summary>
+        /// Returns all keyboard symbols both [ Alt + numpad] except those of [Whitespace] and beep noise.
+        /// </summary>
+        /// <returns>The separator.</returns>
+        string GetDefaultSymbols();
+
+        /// <summary>
         /// Return a random email address.
         /// </summary>
         /// <returns>The email address.</returns>

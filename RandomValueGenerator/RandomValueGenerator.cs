@@ -19,7 +19,7 @@ namespace RandomValueGenerator
         /// <summary>
         /// The alphabet with all Latin letters and digits.
         /// </summary>
-        private static readonly string Alphabet = string.Format("{0}{1}", Letters, Digits);
+        private static readonly string Alphabet = string.Format("{0}{1}{2}", Letters, Digits,Symbols);
 
         #endregion
 
@@ -31,7 +31,7 @@ namespace RandomValueGenerator
         private const string Letters = "qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM";
 
         /// <summary>
-        /// All numeric digits
+        /// All numeric digits.
         /// </summary>
         private const string Digits = "0123456789";
 
@@ -39,6 +39,12 @@ namespace RandomValueGenerator
         /// The default separator of a sentence.
         /// </summary>
         private const string Separator = " ";
+
+        /// <summary>
+        /// All keyboard symbols.
+        /// </summary>
+        private const string Symbols = "☺☻♥♦♣♠◘○◙♂♀♪♫☼►◄↕‼¶§▬↨↑↓→←∟↔▲▼!#$%&½¼¡«»░▒▓│┤╡╢╖╕╣║╗╝╜╛┐└┴┬├─┼╞╟╚╔╩╦╠═╬╧╨╤╥╙╘╒╓╫╪┘┌█▄▌▐▀αßΓπΣσµτΦΘΩδ∞φε∩≡±≥≤⌠⌡÷≈°∙·√ⁿ²■{|}~⌂€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”–—˜™š›œžŸ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¾¿ÀÁÂ_ÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ";
+
 
         #endregion
 
@@ -98,6 +104,15 @@ namespace RandomValueGenerator
         public string GetDefaultSeparator()
         {
             return Separator;
+        }
+
+        /// <summary>
+        /// <see cref="IRandomValueGenerator.GetDefaultSymbols"/>
+        /// </summary>
+        /// <returns>..</returns>
+        public string GetDefaultSymbols()
+        {
+            return Symbols;
         }
 
         /// <summary>

@@ -139,7 +139,7 @@ namespace RandomValueGenerator_nu
         {
             string alphabet = RandomValueGenerator.GetDefaultAlphabet();
 
-            int stringLength = Random.Next(100);
+            int stringLength = Random.Next(309);
 
             string result = RandomValueGenerator.Get(stringLength);
 
@@ -155,7 +155,7 @@ namespace RandomValueGenerator_nu
         [Test]
         public void TestGetRandomStringArgumentExceptionForNegativeStringLength()
         {
-            Assert.Throws<ArgumentException>(() => RandomValueGenerator.Get(-Random.Next(1, 100)));
+            Assert.Throws<ArgumentException>(() => RandomValueGenerator.Get(-Random.Next(1, 309)));
         }
 
         #endregion
