@@ -1,5 +1,0 @@
-C:\Users\Boss\Source\Repos\random-value-generator\RandomValueGenerator\bin\Debug\RandomValueGenerator.dll
-C:\Users\Boss\Source\Repos\random-value-generator\RandomValueGenerator\bin\Debug\RandomValueGenerator.pdb
-C:\Users\Boss\Source\Repos\random-value-generator\RandomValueGenerator\obj\Debug\RandomValueGenerator.csprojResolveAssemblyReference.cache
-C:\Users\Boss\Source\Repos\random-value-generator\RandomValueGenerator\obj\Debug\RandomValueGenerator.dll
-C:\Users\Boss\Source\Repos\random-value-generator\RandomValueGenerator\obj\Debug\RandomValueGenerator.pdb
